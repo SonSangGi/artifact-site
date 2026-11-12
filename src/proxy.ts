@@ -20,6 +20,7 @@ const PUBLIC_PREFIXES = [
   "/api/device/", // CLI device authorization (approve still needs a session server-side)
   "/_next/",
   "/vendor/",
+  "/brand/", // public/brand (logo shown on the share page)
 ];
 
 const PUBLIC_EXACT = new Set(["/mcp", "/for-agents.md", "/robots.txt", "/favicon.ico", "/icon.png"]);
