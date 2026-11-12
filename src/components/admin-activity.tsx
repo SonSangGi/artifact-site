@@ -10,6 +10,7 @@ import { createPortal } from "react-dom";
 import { Loader2, ShieldCheck, X } from "lucide-react";
 import { drawerHost } from "@/components/version-history";
 import { useLocale, useT } from "@/components/locale-provider";
+import { intlLocale } from "@/lib/i18n";
 import type { AdminAction } from "@/lib/types";
 
 interface Entry { id: string; action: AdminAction; at: number; reason: string | null }
@@ -52,7 +53,7 @@ export default function AdminActivity({ slug, onOpenChange }: { slug: string; on
   useEffect(() => { onOpenChange?.(open); return () => onOpenChange?.(false); }, [open, onOpenChange]);
 
   const host = drawerHost(typeof document === "undefined" ? null : document);
-  const when = (ts: number) => new Date(ts).toLocaleString(locale === "zh-CN" ? "zh-CN" : "en-US", { dateStyle: "medium", timeStyle: "short" });
+  const when = (ts: number) => new Date(ts).toLocaleString(intlLocale(locale), { dateStyle: "medium", timeStyle: "short" });
 
   return (
     <>

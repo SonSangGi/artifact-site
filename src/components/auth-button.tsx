@@ -149,6 +149,9 @@ export default function AuthButton({ variant = "button" }: { variant?: "button" 
               <Globe2 size={14} /> <span>{t("Language")}</span><ChevronRight className="auth-menu-tail" size={13} aria-hidden="true" />
             </button>
             {languageOpen && <div className="auth-language-menu" role="menu" aria-label={t("Language")}>
+              <button type="button" className="auth-menu-item" role="menuitemradio" aria-checked={locale === "ko"} onClick={() => { closeLanguageMenu(); if (locale !== "ko") setLocaleCookie("ko"); }}>
+                <span className="auth-menu-check">{locale === "ko" && <Check size={13} />}</span>한국어
+              </button>
               <button type="button" className="auth-menu-item" role="menuitemradio" aria-checked={locale === "zh-CN"} onClick={() => { closeLanguageMenu(); if (locale !== "zh-CN") setLocaleCookie("zh-CN"); }}>
                 <span className="auth-menu-check">{locale === "zh-CN" && <Check size={13} />}</span>{t("Simplified Chinese")}
               </button>

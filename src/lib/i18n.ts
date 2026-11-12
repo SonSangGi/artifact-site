@@ -7,7 +7,7 @@
 // Locale resolution lives elsewhere (i18n-server.ts for server components and route handlers,
 // locale-provider.tsx for client components); this module is pure and safe to import anywhere.
 
-export const LOCALES = ["en", "zh-CN"] as const;
+export const LOCALES = ["en", "zh-CN", "ko"] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = "en";
 
@@ -53,7 +53,12 @@ export function countText(t: Translator, count: number, one: string, other: stri
 /** Locale-aware calendar date (no time). The locale is the viewer's UI locale, so server and client
  *  render the same text — `toLocaleDateString()` with no argument would follow the machine instead. */
 export function formatDate(ts: number, locale: Locale): string {
-  return new Date(ts).toLocaleDateString(locale === "zh-CN" ? "zh-CN" : "en-US");
+  return new Date(ts).toLocaleDateString(intlLocale(locale));
+}
+
+/** BCP 47 tag for Intl date/number formatting. */
+export function intlLocale(locale: Locale): string {
+  return locale === "en" ? "en-US" : locale;
 }
 
 export function translatorFor(locale: Locale): Translator {
@@ -89,6 +94,7 @@ function normalise(tag: string | null | undefined): Locale | null {
   // Only Simplified Chinese has a dictionary. Traditional (zh-TW / zh-HK / zh-Hant) is a
   // different written language, not a dialect of this one — it falls through to English rather
   // than being served Simplified text it did not ask for.
+  if (lower === "ko" || lower.startsWith("ko-")) return "ko";
   if (lower === "zh" || lower === "zh-cn" || lower === "zh-sg" || lower.startsWith("zh-hans")) return "zh-CN";
   return null;
 }

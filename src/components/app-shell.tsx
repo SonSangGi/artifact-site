@@ -26,8 +26,8 @@ function LanguageMenu() {
   return (
     <div className="lang-switch" role="group" aria-label={t("Choose a language")}>
       {LOCALES.map((l) => (
-        <button key={l} type="button" aria-pressed={locale === l} onClick={() => { if (l !== locale) setLocaleCookie(l); }} lang={l === "zh-CN" ? "zh-CN" : "en"}>
-          {l === "zh-CN" ? "中文" : "EN"}
+        <button key={l} type="button" aria-pressed={locale === l} onClick={() => { if (l !== locale) setLocaleCookie(l); }} lang={l}>
+          {l === "zh-CN" ? "中文" : l === "ko" ? "한국어" : "EN"}
         </button>
       ))}
     </div>

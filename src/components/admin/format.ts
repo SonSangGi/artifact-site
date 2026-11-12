@@ -1,5 +1,5 @@
 // Small display helpers for the administration console (client side).
-import type { Locale } from "@/lib/i18n";
+import { intlLocale, type Locale } from "@/lib/i18n";
 
 /** 0 → "0 B", 1536 → "1.5 KB", … up to TB. Digits kept short: this sits in a table column. */
 export function formatBytes(bytes: number): string {
@@ -13,7 +13,7 @@ export function formatBytes(bytes: number): string {
 
 export function formatWhen(ts: number | null, locale: Locale): string {
   if (!ts) return "—";
-  return new Date(ts).toLocaleString(locale === "zh-CN" ? "zh-CN" : "en-US", { dateStyle: "medium", timeStyle: "short" });
+  return new Date(ts).toLocaleString(intlLocale(locale), { dateStyle: "medium", timeStyle: "short" });
 }
 
 /**

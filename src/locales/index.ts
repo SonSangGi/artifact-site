@@ -3,5 +3,7 @@
 // Importing this module anywhere is enough — i18n-server.ts and locale-provider.tsx both do.
 import { registerMessages } from "@/lib/i18n";
 import { zhCN } from "./zh-CN";
+import { ko } from "./ko";
 
 registerMessages("zh-CN", zhCN);
+registerMessages("ko", ko);

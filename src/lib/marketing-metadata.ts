@@ -6,6 +6,7 @@ const SOCIAL_IMAGE_PATH = "/brand/artifact-site-social.png";
 const ogLocale: Record<Locale, string> = {
   en: "en_US",
   "zh-CN": "zh_CN",
+  ko: "ko_KR",
 };
 
 /** Metadata shared only by the platform's public marketing pages. Artifact viewers provide their
